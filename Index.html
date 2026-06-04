@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>เครื่องมือคำนวณราคาขาย</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 400px; margin: auto; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input { width: 100%; padding: 8px; box-sizing: border-box; }
+        .result { margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>คำนวณกำไร</h2>
+    
+    <div class="input-group">
+        <label>ต้นทุนสินค้า (บาท)</label>
+        <input type="number" id="cost" placeholder="เช่น 100">
+    </div>
+
+    <div class="input-group">
+        <label>ราคาที่ต้องการขาย (บาท)</label>
+        <input type="number" id="price" placeholder="เช่น 150">
+    </div>
+
+    <button onclick="calculate()">คำนวณ</button>
+
+    <div class="result" id="resultArea" style="display:none;">
+        <p>กำไรสุทธิ: <span id="profit"></span> บาท</p>
+        <p>คิดเป็นกำไร: <span id="margin"></span> %</p>
+    </div>
+
+    <script>
+        function calculate() {
+            const cost = parseFloat(document.getElementById('cost').value);
+            const price = parseFloat(document.getElementById('price').value);
+            
+            if (cost && price) {
+                const profit = price - cost;
+                const margin = (profit / price) * 100;
+                
+                document.getElementById('profit').innerText = profit.toFixed(2);
+                document.getElementById('margin').innerText = margin.toFixed(2);
+                document.getElementById('resultArea').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
